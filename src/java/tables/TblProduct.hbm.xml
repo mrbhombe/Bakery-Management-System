@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 Apr, 2020 12:31:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="tables.TblProduct" table="tbl_product" catalog="bakery" optimistic-lock="version">
+        <id name="pid" type="java.lang.Integer">
+            <column name="pid" />
+            <generator class="identity" />
+        </id>
+        <property name="pname" type="string">
+            <column name="pname" length="65535" not-null="true" />
+        </property>
+        <property name="pqty" type="int">
+            <column name="pqty" not-null="true" />
+        </property>
+        <property name="pimg" type="string">
+            <column name="pimg" length="65535" not-null="true" />
+        </property>
+        <property name="pprice" type="int">
+            <column name="pprice" not-null="true" />
+        </property>
+        <property name="pdesc" type="string">
+            <column name="pdesc" length="65535" not-null="true" />
+        </property>
+        <set name="tblCarts" table="tbl_cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="tables.TblCart" />
+        </set>
+        <set name="tblFaqs" table="tbl_faq" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="tables.TblFaq" />
+        </set>
+        <set name="tblOrderLists" table="tbl_order_list" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="tables.TblOrderList" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 Apr, 2020 12:31:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="tables.TblCustomer" table="tbl_customer" catalog="bakery" optimistic-lock="version">
+        <id name="cid" type="java.lang.Integer">
+            <column name="cid" />
+            <generator class="identity" />
+        </id>
+        <property name="cname" type="string">
+            <column name="cname" length="65535" not-null="true" />
+        </property>
+        <property name="cemail" type="string">
+            <column name="cemail" length="65535" not-null="true" />
+        </property>
+        <property name="cpass" type="string">
+            <column name="cpass" length="65535" not-null="true" />
+        </property>
+        <property name="caddr" type="string">
+            <column name="caddr" length="65535" not-null="true" />
+        </property>
+        <property name="ccont" type="string">
+            <column name="ccont" length="65535" not-null="true" />
+        </property>
+        <set name="tblCarts" table="tbl_cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cid" not-null="true" />
+            </key>
+            <one-to-many class="tables.TblCart" />
+        </set>
+        <set name="tblOrders" table="tbl_order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cid" not-null="true" />
+            </key>
+            <one-to-many class="tables.TblOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

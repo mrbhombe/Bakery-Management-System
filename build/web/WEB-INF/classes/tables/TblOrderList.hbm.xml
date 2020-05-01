@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 Apr, 2020 12:31:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="tables.TblOrderList" table="tbl_order_list" catalog="bakery" optimistic-lock="version">
+        <id name="lid" type="java.lang.Integer">
+            <column name="lid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblOrder" class="tables.TblOrder" fetch="select">
+            <column name="oid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tblProduct" class="tables.TblProduct" fetch="select">
+            <column name="pid" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="int">
+            <column name="qty" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
